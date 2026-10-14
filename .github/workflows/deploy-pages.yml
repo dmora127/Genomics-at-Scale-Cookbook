@@ -1,0 +1,45 @@
+# Standalone preview of this cookbook on GitHub Pages.
+# Opt in by (1) enabling Pages with "Source: GitHub Actions" in the repository settings and
+# (2) creating a repository variable DEPLOY_PAGES = true. The hub site publishes this cookbook regardless.
+name: Deploy cookbook preview
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: vars.DEPLOY_PAGES == 'true'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install MyST
+        run: npm install -g mystmd@1.11.0
+      - name: Use the standalone MyST config
+        run: cp myst.standalone.yml myst.yml
+      - name: Build HTML
+        run: myst build --html
+        env:
+          BASE_URL: /${{ github.event.repository.name }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_build/html
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this cookbook, please cite it as below."
+title: "Genomics at Scale Cookbook"
+abstract: "Recipes for running genomics workflows at scale on the CHTC high-throughput computing system. Part of the CHTC Bioinformatics Cookbooks."
+authors:
+  - family-names: Morales
+    given-names: Daniel A.
+    orcid: "https://orcid.org/0000-0001-7113-3685"
+    affiliation: "Center for High Throughput Computing, University of Wisconsin-Madison"
+keywords:
+  - bioinformatics
+  - genomics
+  - nanopore basecalling
+  - HTCondor
+  - high-throughput computing
+license: CC-BY-4.0
+repository-code: "https://github.com/dmora127/Genomics-at-Scale-Cookbook"
+url: "https://dmora127.github.io/chtc-biocafe-cookbook/"
+version: 1.0.0
+date-released: "2026-10-14"

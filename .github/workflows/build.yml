@@ -1,0 +1,36 @@
+name: Build cookbook
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install MyST
+        run: npm install -g mystmd@1.11.0
+      - name: Use the standalone MyST config
+        run: cp myst.standalone.yml myst.yml
+      - name: Lint page content
+        run: bash .github/scripts/lint-content.sh
+      - name: Build HTML
+        run: myst build --html
+        env:
+          BASE_URL: /${{ github.event.repository.name }}
+      - name: Check external links
+        run: myst build --html --check-links
+        continue-on-error: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: _build/html

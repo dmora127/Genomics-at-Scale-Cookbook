@@ -1,0 +1,61 @@
+# Standalone configuration for previewing or publishing this cookbook on its own.
+#
+# This file is deliberately NOT named myst.yml: the hub site (CHTC Bioinformatics Cookbooks) includes this
+# repository as a git submodule and lists its pages in its own myst.yml. A myst.yml inside the submodule would be
+# picked up by the hub build as a second project and break the site. To preview this cookbook on its own:
+#
+#     cp myst.standalone.yml myst.yml && myst start
+#
+# myst.yml is listed in .gitignore so the local copy is never committed. CI does the same copy before building.
+version: 1
+project:
+  id: 30bdbde6-773f-4a8e-a2c7-f2d6f292b1db
+  title: Genomics at Scale Cookbook
+  description: Recipes for running genomics workflows at scale on the CHTC high-throughput computing system.
+  keywords:
+    - bioinformatics
+    - genomics
+    - nanopore
+    - basecalling
+    - Dorado
+    - HTCondor
+    - CHTC
+    - high-throughput computing
+  github: https://github.com/dmora127/Genomics-at-Scale-Cookbook
+  license: CC-BY-4.0
+  authors:
+    - name: Daniel A. Morales
+      orcid: 0000-0001-7113-3685
+      affiliation: Center for High Throughput Computing, University of Wisconsin-Madison
+      email: damorales4@wisc.edu
+      url: https://chtc.cs.wisc.edu
+      roles:
+        - Conceptualization
+        - Data Curation
+        - Software
+        - Validation
+        - Visualization
+        - Writing - Original Draft
+        - Writing - Review & Editing
+  toc:
+    - file: index.md
+    - title: Basecalling Nanopore Data with Dorado on CHTC GPUs
+      children:
+        - file: 01-Basecalling-GPUs/01.1-Introduction.md
+        - file: 01-Basecalling-GPUs/01.2-Tutorial-Setup.md
+        - file: 01-Basecalling-GPUs/01.3-Software-Setup.md
+        - file: 01-Basecalling-GPUs/01.4-Data-Preprocessing.md
+        - file: 01-Basecalling-GPUs/01.5-Basecall-Reads.md
+        - file: 01-Basecalling-GPUs/01.6-Next-Steps.md
+site:
+  template: book-theme
+  options:
+    logo: .images/chtc-logo-color.png
+    logo_dark: .images/chtc-logo-white.png
+    logo_text: Genomics at Scale
+    folders: true
+  nav:
+    - title: All Cookbooks
+      url: https://dmora127.github.io/chtc-biocafe-cookbook/
+    - title: CHTC Guides
+      url: https://chtc.cs.wisc.edu/uw-research-computing/guides
