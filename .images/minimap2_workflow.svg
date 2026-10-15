@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2820 650" width="2820" height="650" role="img" aria-labelledby="t">
+<title id="t">Minimap2 read-mapping workflow on CHTC</title>
+<rect width="2820" height="650" fill="#fff"/>
+<defs>
+<symbol id="cloud" viewBox="0 0 240 240"><path d="M62 108 H180 A34 34 0 0 0 176 42 A46 46 0 0 0 92 34 A36 36 0 0 0 62 108 Z" fill="#fff" stroke="#000" stroke-width="12" stroke-linejoin="round"/>
+<g stroke="#000" stroke-width="10" stroke-linecap="round" fill="none">
+<line x1="120" y1="108" x2="120" y2="132"/><line x1="44" y1="132" x2="196" y2="132"/>
+<line x1="44" y1="132" x2="44" y2="150"/><line x1="120" y1="132" x2="120" y2="150"/><line x1="196" y1="132" x2="196" y2="150"/></g>
+<g fill="#fff" stroke="#000" stroke-width="10">
+<rect x="14" y="150" width="60" height="82" rx="6"/><rect x="90" y="150" width="60" height="82" rx="6"/><rect x="166" y="150" width="60" height="82" rx="6"/></g>
+<g stroke="#000" stroke-width="8" stroke-linecap="round">
+<line x1="26" y1="176" x2="62" y2="176"/><line x1="26" y1="206" x2="62" y2="206"/>
+<line x1="102" y1="176" x2="138" y2="176"/><line x1="102" y1="206" x2="138" y2="206"/>
+<line x1="178" y1="176" x2="214" y2="176"/><line x1="178" y1="206" x2="214" y2="206"/></g></symbol>
+<symbol id="doc" viewBox="0 0 240 240"><path d="M45 10 H160 L205 55 V230 H45 Z" fill="#fff" stroke="#000" stroke-width="12" stroke-linejoin="round"/>
+<path d="M160 10 V55 H205" fill="none" stroke="#000" stroke-width="12" stroke-linejoin="round"/>
+<g stroke="#000" stroke-width="10" stroke-linecap="round">
+<line x1="75" y1="100" x2="175" y2="100"/><line x1="75" y1="135" x2="175" y2="135"/>
+<line x1="75" y1="170" x2="140" y2="170"/></g></symbol>
+<symbol id="docs" viewBox="0 0 240 240"><g fill="#fff" stroke="#000" stroke-width="12">
+<rect x="72" y="8" width="150" height="172" rx="6"/>
+<rect x="46" y="34" width="150" height="172" rx="6"/>
+<rect x="20" y="60" width="150" height="172" rx="6"/></g>
+<g stroke="#000" stroke-width="10" stroke-linecap="round">
+<line x1="45" y1="100" x2="145" y2="100"/><line x1="45" y1="132" x2="145" y2="132"/>
+<line x1="45" y1="164" x2="120" y2="164"/><line x1="45" y1="196" x2="135" y2="196"/></g></symbol>
+<symbol id="index" viewBox="0 0 240 240"><path d="M35 10 H140 L185 55 V230 H35 Z" fill="#fff" stroke="#000" stroke-width="12" stroke-linejoin="round"/>
+<path d="M140 10 V55 H185" fill="none" stroke="#000" stroke-width="12" stroke-linejoin="round"/>
+<g stroke="#000" stroke-width="10" stroke-linecap="round"><line x1="62" y1="100" x2="150" y2="100"/><line x1="62" y1="135" x2="120" y2="135"/></g>
+<circle cx="160" cy="165" r="38" fill="#fff" stroke="#000" stroke-width="14"/>
+<line x1="188" y1="193" x2="228" y2="233" stroke="#000" stroke-width="18" stroke-linecap="round"/></symbol>
+<symbol id="monitor" viewBox="0 0 240 240"><rect x="8" y="14" width="224" height="150" rx="14" fill="#fff" stroke="#000" stroke-width="12"/>
+<rect x="95" y="168" width="50" height="22" fill="#000"/><rect x="55" y="190" width="130" height="18" rx="4" fill="#000"/>
+<rect x="36" y="64" width="168" height="48" rx="24" fill="#d9d9d9"/>
+<text x="120" y="98" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" fill="#000">condor_submit</text></symbol>
+<symbol id="outdoc" viewBox="0 0 240 240"><path d="M45 10 H160 L205 55 V230 H45 Z" fill="#fff" stroke="#000" stroke-width="12" stroke-linejoin="round"/>
+<path d="M160 10 V55 H205" fill="none" stroke="#000" stroke-width="12" stroke-linejoin="round"/>
+<g stroke="#000" stroke-width="10" stroke-linecap="round">
+<line x1="75" y1="100" x2="175" y2="100"/><line x1="75" y1="135" x2="175" y2="135"/><line x1="75" y1="170" x2="120" y2="170"/></g>
+<circle cx="170" cy="190" r="36" fill="#000"/>
+<path d="M150 190 L165 205 L192 176" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs>
+<use xlink:href="#doc" href="#doc" x="110" y="40" width="250" height="250"/>
+<text x="235" y="395" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">Reference</text>
+<text x="235" y="467" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">FASTA</text>
+<line x1="390" y1="165" x2="530" y2="165" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M495 130 L550 165 L495 200" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<use xlink:href="#index" href="#index" x="580" y="40" width="250" height="250"/>
+<text x="705" y="395" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">Index</text>
+<text x="705" y="467" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">Reference</text>
+<line x1="860" y1="165" x2="1000" y2="165" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M965 130 L1020 165 L965 200" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<use xlink:href="#docs" href="#docs" x="1050" y="40" width="250" height="250"/>
+<text x="1175" y="395" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">Split</text>
+<text x="1175" y="467" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">Reads</text>
+<line x1="1330" y1="165" x2="1470" y2="165" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M1435 130 L1490 165 L1435 200" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<use xlink:href="#monitor" href="#monitor" x="1520" y="40" width="250" height="250"/>
+<text x="1645" y="420" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">Submit</text>
+<line x1="1800" y1="165" x2="1940" y2="165" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M1905 130 L1960 165 L1905 200" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<use xlink:href="#cloud" href="#cloud" x="1990" y="40" width="250" height="250"/>
+<text x="2115" y="420" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">Distribute</text>
+<line x1="2270" y1="165" x2="2410" y2="165" stroke="#000" stroke-width="10" stroke-linecap="round"/>
+<path d="M2375 130 L2430 165 L2375 200" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<use xlink:href="#outdoc" href="#outdoc" x="2460" y="40" width="250" height="250"/>
+<text x="2585" y="395" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">Sorted</text>
+<text x="2585" y="467" text-anchor="middle" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="62" font-weight="bold" fill="#000">BAMs</text>
+</svg>

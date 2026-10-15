@@ -20,6 +20,8 @@ project:
     - Dorado
     - FastQC
     - quality control
+    - minimap2
+    - read mapping
     - HTCondor
     - CHTC
     - high-throughput computing
@@ -57,6 +59,15 @@ project:
         - file: 02-Quality-with-FASTQC/02.4-Run-One-Sample.md
         - file: 02-Quality-with-FASTQC/02.5-Scale-Out.md
         - file: 02-Quality-with-FASTQC/02.6-Next-Steps.md
+    - title: Mapping Long Reads with Minimap2 on CHTC
+      children:
+        - file: 03-Read-Mapping-with-Minimap2/03.1-Introduction.md
+        - file: 03-Read-Mapping-with-Minimap2/03.2-Tutorial-Setup.md
+        - file: 03-Read-Mapping-with-Minimap2/03.3-Software-Setup.md
+        - file: 03-Read-Mapping-with-Minimap2/03.4-Index-Reference.md
+        - file: 03-Read-Mapping-with-Minimap2/03.5-Split-Reads.md
+        - file: 03-Read-Mapping-with-Minimap2/03.6-Map-Reads.md
+        - file: 03-Read-Mapping-with-Minimap2/03.7-Next-Steps.md
 site:
   template: book-theme
   options:

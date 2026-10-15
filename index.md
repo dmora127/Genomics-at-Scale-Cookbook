@@ -22,7 +22,13 @@ Split raw Oxford Nanopore POD5 files by sequencing channel and basecall them as 
 Run FastQC on one FASTQ file, then on every file with a single submit file and the `queue ... from` syntax. The smallest recipe in the cookbook, and the clearest introduction to the one-job-per-sample pattern the others rely on. Ends with a MultiQC summary job.
 :::
 
-More recipes (genome assembly, read mapping) are in preparation. See [how to contribute](https://dmora127.github.io/chtc-biocafe-cookbook/frontmatter/contribute) if you have a workflow to share.
+:::{card} Mapping Long Reads with Minimap2 on CHTC
+:link: ./03-Read-Mapping-with-Minimap2/03.1-Introduction.md
+
+Index a reference genome once, split a Nanopore read set into chunks, and map the chunks as hundreds of parallel Minimap2 jobs that return sorted BAM files. Covers which files belong in `/staging` and travel through OSDF, and which belong in `/home`.
+:::
+
+More recipes (genome assembly) are in preparation. See [how to contribute](https://dmora127.github.io/chtc-biocafe-cookbook/frontmatter/contribute) if you have a workflow to share.
 
 ## Before You Start
 
@@ -41,6 +47,7 @@ The executables, submit files, and container definitions used by each recipe liv
 |--------|------------|
 | Basecalling with Dorado | [tutorial-ONT-Basecalling](https://github.com/dmora127/tutorial-ONT-Basecalling) |
 | Read quality with FastQC | [tutorial-fastqc](https://github.com/CHTC/tutorial-fastqc) |
+| Read mapping with Minimap2 | [CHTC-BioCafe-Fall25-Minimap2](https://github.com/dmora127/CHTC-BioCafe-Fall25-Minimap2) |
 
 ## How to Cite
 
