@@ -22,6 +22,8 @@ project:
     - quality control
     - minimap2
     - read mapping
+    - hifiasm
+    - genome assembly
     - HTCondor
     - CHTC
     - high-throughput computing
@@ -68,6 +70,15 @@ project:
         - file: 03-Read-Mapping-with-Minimap2/03.5-Split-Reads.md
         - file: 03-Read-Mapping-with-Minimap2/03.6-Map-Reads.md
         - file: 03-Read-Mapping-with-Minimap2/03.7-Next-Steps.md
+    - title: Assembling a Genome from Nanopore Reads with hifiasm on CHTC
+      children:
+        - file: 04-Genome-Assembly-with-HiFiAsm/04.1-Introduction.md
+        - file: 04-Genome-Assembly-with-HiFiAsm/04.2-Tutorial-Setup.md
+        - file: 04-Genome-Assembly-with-HiFiAsm/04.3-Software-Setup.md
+        - file: 04-Genome-Assembly-with-HiFiAsm/04.4-Stage-Reads.md
+        - file: 04-Genome-Assembly-with-HiFiAsm/04.5-Submit-Assembly.md
+        - file: 04-Genome-Assembly-with-HiFiAsm/04.6-Assembly-Output.md
+        - file: 04-Genome-Assembly-with-HiFiAsm/04.7-Next-Steps.md
 site:
   template: book-theme
   options:
