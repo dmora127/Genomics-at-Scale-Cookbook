@@ -11,6 +11,7 @@ keywords:
   - bioinformatics
   - genomics
   - nanopore basecalling
+  - read quality control
   - HTCondor
   - high-throughput computing
 license: CC-BY-4.0

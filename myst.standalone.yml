@@ -18,6 +18,8 @@ project:
     - nanopore
     - basecalling
     - Dorado
+    - FastQC
+    - quality control
     - HTCondor
     - CHTC
     - high-throughput computing
@@ -47,6 +49,14 @@ project:
         - file: 01-Basecalling-GPUs/01.4-Data-Preprocessing.md
         - file: 01-Basecalling-GPUs/01.5-Basecall-Reads.md
         - file: 01-Basecalling-GPUs/01.6-Next-Steps.md
+    - title: Assessing Read Quality with FastQC on CHTC
+      children:
+        - file: 02-Quality-with-FASTQC/02.1-Introduction.md
+        - file: 02-Quality-with-FASTQC/02.2-Tutorial-Setup.md
+        - file: 02-Quality-with-FASTQC/02.3-Software-Setup.md
+        - file: 02-Quality-with-FASTQC/02.4-Run-One-Sample.md
+        - file: 02-Quality-with-FASTQC/02.5-Scale-Out.md
+        - file: 02-Quality-with-FASTQC/02.6-Next-Steps.md
 site:
   template: book-theme
   options:

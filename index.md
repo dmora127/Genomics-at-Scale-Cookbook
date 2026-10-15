@@ -16,14 +16,20 @@ The recipes are written for researchers who already know *what* analysis they wa
 Split raw Oxford Nanopore POD5 files by sequencing channel and basecall them as hundreds of independent GPU jobs with Dorado. Covers building the container, staging basecalling models, preprocessing the data, submitting and monitoring the jobs, and merging the results.
 :::
 
-More recipes (read quality control, genome assembly, read mapping) are in preparation. See [how to contribute](https://dmora127.github.io/chtc-biocafe-cookbook/frontmatter/contribute) if you have a workflow to share.
+:::{card} Assessing Read Quality with FastQC on CHTC
+:link: ./02-Quality-with-FASTQC/02.1-Introduction.md
+
+Run FastQC on one FASTQ file, then on every file with a single submit file and the `queue ... from` syntax. The smallest recipe in the cookbook, and the clearest introduction to the one-job-per-sample pattern the others rely on. Ends with a MultiQC summary job.
+:::
+
+More recipes (genome assembly, read mapping) are in preparation. See [how to contribute](https://dmora127.github.io/chtc-biocafe-cookbook/frontmatter/contribute) if you have a workflow to share.
 
 ## Before You Start
 
 Every recipe assumes that you:
 
 * Have a CHTC HTC account and can log into an Access Point (for example `ap2001.chtc.wisc.edu`). Request an account through the [CHTC account request form](https://chtc.cs.wisc.edu/uw-research-computing/form.html).
-* Have a `/staging` directory for large files. Request one through the [CHTC large data guide](https://chtc.cs.wisc.edu/uw-research-computing/file-avail-largedata).
+* Have a `/staging` directory for large files (every recipe except FastQC needs one). Request one through the [CHTC large data guide](https://chtc.cs.wisc.edu/uw-research-computing/file-avail-largedata).
 * Can submit and monitor HTCondor jobs. If you are new to HTCondor, complete the [Roadmap to getting started](https://chtc.cs.wisc.edu/uw-research-computing/htc-roadmap) first.
 * Are comfortable on the Linux command line.
 
@@ -34,6 +40,7 @@ The executables, submit files, and container definitions used by each recipe liv
 | Recipe | Repository |
 |--------|------------|
 | Basecalling with Dorado | [tutorial-ONT-Basecalling](https://github.com/dmora127/tutorial-ONT-Basecalling) |
+| Read quality with FastQC | [tutorial-fastqc](https://github.com/CHTC/tutorial-fastqc) |
 
 ## How to Cite
 

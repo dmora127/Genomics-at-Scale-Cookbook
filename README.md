@@ -7,6 +7,7 @@ Recipes for running genomics workflows at scale on the [Center for High Throughp
 | Recipe | Directory | Companion repository |
 |--------|-----------|----------------------|
 | Basecalling Nanopore Data with Dorado on CHTC GPUs | `01-Basecalling-GPUs/` | [tutorial-ONT-Basecalling](https://github.com/dmora127/tutorial-ONT-Basecalling) |
+| Assessing Read Quality with FastQC on CHTC | `02-Quality-with-FASTQC/` | [tutorial-fastqc](https://github.com/CHTC/tutorial-fastqc) |
 
 Each recipe is a chapter of MyST Markdown pages. The executables, submit files, and container definitions it uses live in the companion repository, which readers clone onto a CHTC Access Point.
 
@@ -28,13 +29,14 @@ The configuration lives in `myst.standalone.yml` rather than `myst.yml` on purpo
 
 ```
 .
-├── myst.standalone.yml      # project metadata, table of contents, site options (copied to myst.yml for standalone builds)
-├── index.md                 # cookbook landing page
-├── 01-Basecalling-GPUs/     # one directory per recipe; pages numbered 01.1, 01.2, ...
-├── .images/                 # figures used by the pages
+├── myst.standalone.yml                 # project metadata, table of contents, site options (copied to myst.yml for standalone builds)
+├── index.md                            # cookbook landing page
+├── 01-Basecalling-GPUs/                # one directory per recipe; pages numbered 01.1, 01.2, ...
+├── 02-Quality-with-FASTQC/
+├── .images/                            # figures used by the pages (photos carry their attribution in the page caption)
 ├── CITATION.cff
-├── LICENSE                  # CC BY 4.0
-└── .github/                 # CI workflows and the content lint script
+├── LICENSE                             # CC BY 4.0
+└── .github/                            # CI workflows and the content lint script
 ```
 
 ## Contributing
