@@ -1,0 +1,30 @@
+version: 1
+project:
+  contributors:
+    - id: daniel_a_morales
+      name: Daniel A. Morales
+      email: damorales4@wisc.edu
+      orcid: 0000-0001-7113-3685
+      github: dmora127
+      affiliations:
+        - id: CHTC
+    - id: rachel_lombardi
+      name: Rachel Lombardi
+      email: rlombardi@wisc.edu
+      orcid: 0000-0001-8917-3810
+      github: rachellombardi
+      affiliations:
+        - id: CHTC
+    - id: christina_koch
+      name: Christina Koch
+      email: ckoch5@wisc.edu
+      orcid: 0000-0001-8600-8158
+      github: christinalk
+      affiliations:
+        - id: CHTC
+  affiliations:
+    - id: CHTC
+      name: Center for High Throughput Computing, University of Wisconsin-Madison
+      institution: University of Wisconsin-Madison
+      department: Center for High Throughput Computing
+      url: https://chtc.cs.wisc.edu

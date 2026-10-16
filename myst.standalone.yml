@@ -8,6 +8,8 @@
 #
 # myst.yml is listed in .gitignore so the local copy is never committed. CI does the same copy before building.
 version: 1
+extend:
+    - ./authors.yml
 project:
   id: 30bdbde6-773f-4a8e-a2c7-f2d6f292b1db
   title: Genomics at Scale Cookbook
@@ -29,20 +31,6 @@ project:
     - high-throughput computing
   github: https://github.com/dmora127/Genomics-at-Scale-Cookbook
   license: CC-BY-4.0
-  authors:
-    - name: Daniel A. Morales
-      orcid: 0000-0001-7113-3685
-      affiliation: Center for High Throughput Computing, University of Wisconsin-Madison
-      email: damorales4@wisc.edu
-      url: https://chtc.cs.wisc.edu
-      roles:
-        - Conceptualization
-        - Data Curation
-        - Software
-        - Validation
-        - Visualization
-        - Writing - Original Draft
-        - Writing - Review & Editing
   toc:
     - file: index.md
     - title: Basecalling Nanopore Data with Dorado on CHTC GPUs
