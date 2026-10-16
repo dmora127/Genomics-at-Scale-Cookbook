@@ -34,6 +34,13 @@ jobs:
         run: npm install -g mystmd@1.11.0
       - name: Use the standalone MyST config
         run: cp myst.standalone.yml myst.yml
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install --quiet pyyaml
+      - name: Expand page authors from authors.yml
+        # Pages may be committed in the short form (`- id:` plus roles); see build.yml.
+        run: python3 .github/scripts/sync-page-authors.py
       - name: Build HTML
         run: myst build --html
         env:

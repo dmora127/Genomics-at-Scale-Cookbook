@@ -27,10 +27,11 @@ jobs:
         with:
           python-version: '3.12'
       - run: python3 -m pip install --quiet pyyaml
-      - name: Check that page authors match authors.yml
-        # Pages credit people as full inline author objects. Write the short `- id:` form and run
-        # `python3 .github/scripts/sync-page-authors.py` to expand it before committing.
-        run: python3 .github/scripts/sync-page-authors.py --check
+      - name: Expand page authors from authors.yml
+        # Pages may be committed in the short form (`- id:` plus roles). This expands them in the working copy
+        # so the build renders full author details; expand-page-authors.yml commits the same expansion to main.
+        # Fails when authors.yml is wrong (duplicate or invalid ORCID, undefined affiliation id).
+        run: python3 .github/scripts/sync-page-authors.py
       - name: Build HTML
         run: myst build --html
         env:
