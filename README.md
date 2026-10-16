@@ -40,7 +40,7 @@ The configuration lives in `myst.standalone.yml` rather than `myst.yml` on purpo
 ├── .images/                            # figures used by the pages (photos carry their attribution in the page caption)
 ├── CITATION.cff
 ├── LICENSE                             # CC BY 4.0
-└── .github/                            # CI workflows and the content lint script
+└── .github/                            # CI workflows, the content lint script, and the author sync scripts
 ```
 
 ## Contributing
@@ -49,4 +49,6 @@ Fixes and improvements are welcome as pull requests. New recipes should follow t
 
 ## Citation and license
 
-See `CITATION.cff`. Content is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+See `CITATION.cff`. Its `authors:` list is generated, not hand-edited: on every push to `main`, the `Expand page authors` workflow rebuilds it from the people credited in the `authors:` frontmatter of the pages, in the order `authors.yml` lists them, and commits the result. To be cited, add yourself to `authors.yml` and to the pages you wrote; a chapter that is removed takes its authors out of the citation with it. The other fields (`version`, `date-released`, `keywords`) are still maintained by hand.
+
+Content is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

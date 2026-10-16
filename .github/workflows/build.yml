@@ -32,6 +32,10 @@ jobs:
         # so the build renders full author details; expand-page-authors.yml commits the same expansion to main.
         # Fails when authors.yml is wrong (duplicate or invalid ORCID, undefined affiliation id).
         run: python3 .github/scripts/sync-page-authors.py
+      - name: Sync the CITATION.cff author list
+        # Rebuilds the list from the pages in the working copy; expand-page-authors.yml commits the same result to
+        # main. Fails when a page credits an author id authors.yml does not define or no page credits anyone.
+        run: python3 .github/scripts/sync-citation.py
       - name: Build HTML
         run: myst build --html
         env:

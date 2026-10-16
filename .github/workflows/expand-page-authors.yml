@@ -1,14 +1,20 @@
-# Expands the short author form in page frontmatter (`- id: <contributor>` plus `roles:`) into the full inline
-# author objects MyST needs, using authors.yml, and commits the result back to main. Authors commit the short
-# form; the history still ends up with the expanded form. It then tells the hub to sync, so the hub only ever
-# picks up the expanded commit. This replaces notify-hub.yml.
+# Keeps the two derived author lists in this repository in step with authors.yml and commits the result back to
+# main, then tells the hub to sync so the hub only ever picks up the synced commit. This replaces notify-hub.yml.
+#
+#  1. Page frontmatter: expands the short author form (`- id: <contributor>` plus `roles:`) into the full inline
+#     author objects MyST needs, using authors.yml. Authors commit the short form; the history still ends up with
+#     the expanded form.
+#  2. CITATION.cff: rewrites its `authors:` list to the people credited on the pages, so adding a chapter with a
+#     new author adds them to the citation and removing a person's last chapter removes them. The order follows
+#     authors.yml. Nothing else in CITATION.cff changes (bump version and date-released by hand on a release).
 #
 # A push made with the built-in GITHUB_TOKEN starts no other workflows, but none is needed: build.yml and
 # deploy-pages.yml expand the pages in their own working copy before building, so the runs started by the
 # human's push already render the expanded authors.
 #
-# The script exits non-zero when authors.yml itself is wrong (a duplicated or invalid ORCID, an undefined
-# affiliation id); nothing is committed and the hub is not told until that is fixed.
+# Either script exits non-zero when authors.yml itself is wrong (a duplicated or invalid ORCID, an undefined
+# affiliation id) or a page credits an author id it does not define; nothing is committed and the hub is not
+# told until that is fixed.
 #
 # Needs the repository secret HUB_DISPATCH_TOKEN: a fine-grained personal access token with Contents read and
 # write on the hub repository (the built-in token cannot send events to another repository).
@@ -35,16 +41,25 @@ jobs:
           python-version: '3.12'
       - run: python3 -m pip install --quiet pyyaml
 
-      - name: Expand page authors and commit the result
+      - name: Expand page authors, sync the CITATION.cff author list, and commit the result
+        # Pages first, so the citation script reads expanded author entries.
         run: |
           python3 .github/scripts/sync-page-authors.py
+          python3 .github/scripts/sync-citation.py
           if git diff --quiet; then
-            echo "Every page already carries the expanded form."
+            echo "Every page already carries the expanded form and CITATION.cff lists every page author."
             exit 0
+          fi
+          if git diff --quiet -- CITATION.cff; then
+            message="Expand page authors from authors.yml"
+          elif git diff --quiet -- . ':!CITATION.cff'; then
+            message="Update the CITATION.cff author list from the chapter pages"
+          else
+            message="Expand page authors and update the CITATION.cff author list"
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "Expand page authors from authors.yml"
+          git commit -am "$message"
           git push
 
       - name: Tell the hub to sync

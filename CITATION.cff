@@ -7,6 +7,14 @@ authors:
     given-names: Daniel A.
     orcid: "https://orcid.org/0000-0001-7113-3685"
     affiliation: "Center for High Throughput Computing, University of Wisconsin-Madison"
+  - family-names: Lombardi
+    given-names: Rachel
+    orcid: "https://orcid.org/0000-0001-8917-3810"
+    affiliation: "Center for High Throughput Computing, University of Wisconsin-Madison"
+  - family-names: Koch
+    given-names: Christina
+    orcid: "https://orcid.org/0000-0001-8600-8158"
+    affiliation: "Center for High Throughput Computing, University of Wisconsin-Madison"
 keywords:
   - bioinformatics
   - genomics
