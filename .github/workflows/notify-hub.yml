@@ -1,0 +1,11 @@
+name: Notify hub
+on:
+  push:
+    branches: [main]
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.HUB_DISPATCH_TOKEN }}
+        run: gh api repos/dmora127/chtc-biocafe-cookbook/dispatches -f event_type=cookbook-updated
