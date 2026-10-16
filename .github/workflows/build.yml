@@ -23,6 +23,14 @@ jobs:
         run: cp myst.standalone.yml myst.yml
       - name: Lint page content
         run: bash .github/scripts/lint-content.sh
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m pip install --quiet pyyaml
+      - name: Check that page authors match authors.yml
+        # Pages credit people as full inline author objects. Write the short `- id:` form and run
+        # `python3 .github/scripts/sync-page-authors.py` to expand it before committing.
+        run: python3 .github/scripts/sync-page-authors.py --check
       - name: Build HTML
         run: myst build --html
         env:
