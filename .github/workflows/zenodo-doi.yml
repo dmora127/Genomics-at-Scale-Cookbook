@@ -1,0 +1,121 @@
+# Records the DOIs Zenodo mints for a release in CITATION.cff (plus the DOI badge in README.md and the citation
+# quoted on the landing page, index.md), then commits to main.
+#
+# Publishing a GitHub release makes Zenodo archive it and mint two DOIs: a concept DOI (created with the first
+# release, shared by every version, always resolving to the latest one) and a version DOI for that release alone.
+# Zenodo does this asynchronously, so right after publishing there is no DOI yet; this workflow polls Zenodo's
+# public API for up to 45 minutes, then writes the concept DOI as CITATION.cff's primary doi, both DOIs under
+# identifiers, and the release's version and date-released. Pushes that are not releases never touch those keys
+# (expand-page-authors.yml keeps only the authors list current).
+#
+# The `released` activity fires when a full release is published and when a pre-release is promoted to one, but
+# not when a pre-release is published, so pre-releases stay out of CITATION.cff. Zenodo still mints a DOI for
+# them; to record one anyway, run this workflow by hand with its tag. Drafts never reach Zenodo.
+#
+# What Zenodo archives for a release is the tag's tree, which cannot contain its own DOI: the archived
+# CITATION.cff carries the previous release's DOIs and main carries the current ones. That is inherent to the
+# Zenodo GitHub integration, not a bug.
+#
+# One-time prerequisite that cannot be automated: the repository owner turns this repository on at
+# https://zenodo.org/account/settings/github/ (that installs Zenodo's webhook). When Zenodo fails a release (an
+# invalid CITATION.cff is the usual cause, which build.yml guards against on every push) no record ever appears,
+# and this workflow fails with an error saying where to look. Once the record exists, re-run by hand:
+#
+#     gh workflow run zenodo-doi.yml -f tag=1.0.0
+#
+# The commit is made with the built-in GITHUB_TOKEN, so it starts no other workflows; none is needed. The hub is
+# not told either: it reads nothing but the authors list from CITATION.cff, and its daily sync picks the commit up.
+
+name: Record Zenodo DOI
+
+on:
+  release:
+    types: [released]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag of an already published release, e.g. 1.0.0"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zenodo-doi-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Look at the release
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          tag="${EVENT_TAG:-$INPUT_TAG}"
+          read -r draft prerelease < <(gh release view "$tag" -R "$GITHUB_REPOSITORY" \
+              --json isDraft,isPrerelease --jq '"\(.isDraft) \(.isPrerelease)"')
+          if [ "$draft" = true ]; then
+            echo "::error::$tag is a draft release; Zenodo archives only published releases"
+            exit 1
+          fi
+          if [ "$prerelease" = true ] && [ "$GITHUB_EVENT_NAME" = release ]; then
+            echo "::notice::$tag is a pre-release; CITATION.cff records full releases only. Zenodo still minted a DOI for it; to record that anyway: gh workflow run zenodo-doi.yml -f tag=$tag"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        if: steps.release.outputs.skip != 'true'
+        with:
+          # A release event checks out the tag by default; CITATION.cff on main is what gets updated.
+          ref: main
+      - uses: actions/setup-python@v5
+        if: steps.release.outputs.skip != 'true'
+        with:
+          python-version: '3.12'
+      - if: steps.release.outputs.skip != 'true'
+        run: python3 -m pip install --quiet pyyaml cffconvert==2.0.0
+
+      - name: Wait for Zenodo to archive the release, then record its DOIs
+        if: steps.release.outputs.skip != 'true'
+        env:
+          TAG: ${{ steps.release.outputs.tag }}
+        run: |
+          python3 .github/scripts/sync-release-doi.py "$TAG" --wait --timeout 2700 --interval 60 --badge README.md
+          python3 .github/scripts/sync-index-citation.py
+
+      - name: Validate CITATION.cff
+        if: steps.release.outputs.skip != 'true'
+        run: cffconvert --validate -i CITATION.cff
+
+      - name: Commit and push
+        if: steps.release.outputs.skip != 'true'
+        env:
+          TAG: ${{ steps.release.outputs.tag }}
+        # If main moved while this run was polling (an expand-page-authors commit, say), start over on the new
+        # tip instead of rebasing: the script is idempotent, so regenerating is simpler and cannot conflict.
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5; do
+            if git diff --quiet; then
+              echo "CITATION.cff and index.md already record release $TAG."
+              exit 0
+            fi
+            git commit -am "Record the Zenodo DOIs for release $TAG"
+            git push origin HEAD:main && exit 0
+            echo "main moved while this run was working (attempt $attempt); regenerating on the new tip"
+            git fetch origin main && git reset --hard origin/main
+            python3 .github/scripts/sync-release-doi.py "$TAG" --badge README.md
+            python3 .github/scripts/sync-index-citation.py
+            cffconvert --validate -i CITATION.cff
+            sleep 15
+          done
+          echo "::error::could not push to main after 5 attempts"
+          exit 1

@@ -5,7 +5,8 @@ The cookbook's authors are the people credited in the `authors:` frontmatter of 
 means the chapter pages under 01-.../, 02-.../ and so on. This script collects them, looks each one up in
 authors.yml (the ground truth for names, ORCIDs and affiliations) and rewrites the `authors:` list in
 CITATION.cff to match. Adding a chapter with a new author adds that person to the citation; removing the last
-chapter a person worked on removes them. Nothing else in CITATION.cff is touched.
+chapter a person worked on removes them. Nothing else in CITATION.cff is touched; doi, identifiers, version and
+date-released are written by sync-release-doi.py when a release is published.
 
   CITATION.cff                          authors.yml                        02-.../02.1-Introduction.md
   authors:                              contributors:                      authors:

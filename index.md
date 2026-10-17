@@ -58,9 +58,11 @@ The executables, submit files, and container definitions used by each recipe liv
 
 ## How to Cite
 
-If this cookbook helped your research, please cite it. A citation file (`CITATION.cff`) is included in the repository, and a DOI is minted for each tagged release.
+If this cookbook helped your research, please cite it. A citation file (`CITATION.cff`) is included in the repository, and a DOI is minted for each published release.
 
-> Morales, D. A. (2026). *Genomics at Scale Cookbook*. Center for High Throughput Computing, University of Wisconsin-Madison. https://github.com/dmora127/Genomics-at-Scale-Cookbook
+% Generated from CITATION.cff by .github/scripts/sync-index-citation.py on every push. Change CITATION.cff or authors.yml, not this quote.
+
+> Morales, D. A., Lombardi, R., & Koch, C. (2026). *Genomics at Scale Cookbook* (Version 1.0.0). Center for High Throughput Computing, University of Wisconsin-Madison. https://github.com/dmora127/Genomics-at-Scale-Cookbook
 
 ## Part of the CHTC Bioinformatics Cookbooks
 

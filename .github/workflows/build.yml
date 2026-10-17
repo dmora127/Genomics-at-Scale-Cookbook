@@ -26,7 +26,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python3 -m pip install --quiet pyyaml
+      - run: python3 -m pip install --quiet pyyaml cffconvert==2.0.0
       - name: Expand page authors from authors.yml
         # Pages may be committed in the short form (`- id:` plus roles). This expands them in the working copy
         # so the build renders full author details; expand-page-authors.yml commits the same expansion to main.
@@ -36,6 +36,12 @@ jobs:
         # Rebuilds the list from the pages in the working copy; expand-page-authors.yml commits the same result to
         # main. Fails when a page credits an author id authors.yml does not define or no page credits anyone.
         run: python3 .github/scripts/sync-citation.py
+      - name: Validate CITATION.cff
+        # Zenodo validates this file with cffconvert when a release is published and fails the release (visibly
+        # only when logged in to Zenodo) if it is invalid, so catch that here on every push and pull request.
+        run: cffconvert --validate -i CITATION.cff
+      - name: Render the landing-page citation from CITATION.cff
+        run: python3 .github/scripts/sync-index-citation.py
       - name: Build HTML
         run: myst build --html
         env:

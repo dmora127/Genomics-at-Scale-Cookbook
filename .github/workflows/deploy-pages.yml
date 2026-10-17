@@ -41,6 +41,10 @@ jobs:
       - name: Expand page authors from authors.yml
         # Pages may be committed in the short form (`- id:` plus roles); see build.yml.
         run: python3 .github/scripts/sync-page-authors.py
+      - name: Sync CITATION.cff and the landing-page citation
+        run: |
+          python3 .github/scripts/sync-citation.py
+          python3 .github/scripts/sync-index-citation.py
       - name: Build HTML
         run: myst build --html
         env:
