@@ -6,12 +6,14 @@ CITATION.cff, so the names, year, version and DOI in it never fall behind the ci
 scripts maintain (sync-citation.py for the authors, sync-release-doi.py for a release's DOIs):
 
   > Morales, D. A., Lombardi, R., & Koch, C. (2026). *Genomics at Scale Cookbook* (Version 1.0.0). Center for
-  > High Throughput Computing, University of Wisconsin-Madison. https://doi.org/10.5281/zenodo.1003149
+  > High Throughput Computing, University of Wisconsin-Madison. https://github.com/dmora127/Genomics-at-Scale-Cookbook.
+  > https://doi.org/10.5281/zenodo.1003149
 
 The quote is APA style: authors as "Family, G. I." joined with commas and an ampersand before the last one
 (an author entity's name is used as written); the year of date-released, or n.d. without one; the title in
-italics with the version in parentheses; the authors' distinct affiliations as the publisher; and the DOI as a
-URL, or the repository-code or url field when there is no DOI yet.
+italics with the version in parentheses; the authors' distinct affiliations as the publisher; the repository
+URL (repository-code, or url); and, as soon as CITATION.cff has one, the concept DOI as a URL at the end. Before
+the first release there is no DOI and the quote ends with the repository URL.
 
 The quote is found through the marker comment above it in index.md (MyST renders a % line as nothing):
 
@@ -76,13 +78,16 @@ def citation(cff, problems):
     title = str(cff.get("title") or "").strip() or "Untitled"
     version = cff.get("version")
     publisher = "; ".join(dict.fromkeys(str(a["affiliation"]).strip() for a in authors if a.get("affiliation")))
-    link = f"https://doi.org/{cff['doi']}" if cff.get("doi") else str(cff.get("repository-code") or cff.get("url") or "")
+    repository = str(cff.get("repository-code") or cff.get("url") or "").strip()
+    doi = str(cff.get("doi") or "").strip()
     pieces = [f"{author_list([author_name(a) for a in authors])} ({year}).",
               f"*{title}*" + (f" (Version {version})" if version not in (None, "") else "") + "."]
     if publisher:
         pieces.append(publisher + ".")
-    if link:
-        pieces.append(link)
+    if repository:
+        pieces.append(repository + ("." if doi else ""))
+    if doi:
+        pieces.append(f"https://doi.org/{doi}")
     return " ".join(pieces)
 
 
