@@ -1,5 +1,7 @@
 # Genomics at Scale Cookbook
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23428258.svg)](https://doi.org/10.5281/zenodo.23428258)
+
 Recipes for running genomics workflows at scale on the [Center for High Throughput Computing (CHTC)](https://chtc.cs.wisc.edu) system. Part of the [CHTC Bioinformatics Cookbooks](https://dmora127.github.io/chtc-biocafe-cookbook/).
 
 ## Recipes

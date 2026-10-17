@@ -27,5 +27,13 @@ keywords:
 license: CC-BY-4.0
 repository-code: "https://github.com/dmora127/Genomics-at-Scale-Cookbook"
 url: "https://dmora127.github.io/chtc-biocafe-cookbook/"
-version: 1.0.0
-date-released: "2026-10-14"
+doi: 10.5281/zenodo.23428258
+identifiers:
+  - description: "The concept DOI of the work."
+    type: doi
+    value: 10.5281/zenodo.23428258
+  - description: "The versioned DOI for version 0.1.0 of the work."
+    type: doi
+    value: 10.5281/zenodo.23428259
+version: 0.1.0
+date-released: "2026-10-17"

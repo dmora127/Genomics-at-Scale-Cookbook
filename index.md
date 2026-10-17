@@ -62,7 +62,7 @@ If this cookbook helped your research, please cite it. A citation file (`CITATIO
 
 % Generated from CITATION.cff by .github/scripts/sync-index-citation.py on every push. Change CITATION.cff or authors.yml, not this quote.
 
-> Morales, D. A., Lombardi, R., & Koch, C. (2026). *Genomics at Scale Cookbook* (Version 1.0.0). Center for High Throughput Computing, University of Wisconsin-Madison. https://github.com/dmora127/Genomics-at-Scale-Cookbook
+> Morales, D. A., Lombardi, R., & Koch, C. (2026). *Genomics at Scale Cookbook* (Version 0.1.0). Center for High Throughput Computing, University of Wisconsin-Madison. https://doi.org/10.5281/zenodo.23428258
 
 ## Part of the CHTC Bioinformatics Cookbooks
 
